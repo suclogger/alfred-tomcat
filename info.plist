@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>Toggle Tomcat</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>58B5EC03-EE22-4D1D-8E0B-53F1AA6CC417</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F7106078-0B7B-4D10-B3A7-7CC5859ED2CF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>7885990D-F686-43C3-8AF7-7E325D27E25F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1355F940-DB64-4D4D-98B7-001008413671</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>F7106078-0B7B-4D10-B3A7-7CC5859ED2CF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7885990D-F686-43C3-8AF7-7E325D27E25F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Suclogger</string>
+	<key>description</key>
+	<string>Toggle Tomcat</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Toggle Tomcat</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>tc</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>wait</string>
+				<key>script</key>
+				<string>#!/bin/bash
+
+query="{query}"
+
+IFS=''; out=""
+while read -r line; do
+    name=$(echo $line | awk -F' {1,}' '{print $0}')
+	name_seded=$(echo $name | sed 's/.xmls//g' | sed 's/.xml//g')
+    out+="&lt;item arg=\"$name_seded\" valid=\"yes\"&gt;\
+            &lt;title&gt;$name_seded&lt;/title&gt;\
+            &lt;subtitle&gt;$name_seded &lt;/subtitle&gt;\
+        &lt;/item&gt;"
+done &lt; &lt;(ls /Applications/apache-tomcat-7.0.59/conf/Catalina/localhost | grep -i "$query" )
+
+echo "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;items&gt;$out&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>Display the all xmls</string>
+				<key>title</key>
+				<string>toggle tomcat xml files</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F7106078-0B7B-4D10-B3A7-7CC5859ED2CF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>hotkey</key>
+				<integer>17</integer>
+				<key>hotmod</key>
+				<integer>1703936</integer>
+				<key>hotstring</key>
+				<string>T</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>58B5EC03-EE22-4D1D-8E0B-53F1AA6CC417</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>#!/bin/bash
+cd /Applications/apache-tomcat-7.0.59/conf/Catalina/localhost/
+find . -name "*.xml"|sed 's/.xml//'|xargs -n1 -I {} mv {}.xml {}.xmls
+mv {query}.xmls {query}.xml
+echo {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7885990D-F686-43C3-8AF7-7E325D27E25F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<true/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}has been chosen</string>
+				<key>title</key>
+				<string>Toggle Tomcat</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>1355F940-DB64-4D4D-98B7-001008413671</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>1355F940-DB64-4D4D-98B7-001008413671</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>58B5EC03-EE22-4D1D-8E0B-53F1AA6CC417</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>7885990D-F686-43C3-8AF7-7E325D27E25F</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>F7106078-0B7B-4D10-B3A7-7CC5859ED2CF</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>hi.suclogger.me</string>
+</dict>
+</plist>
