@@ -52,6 +52,29 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>#!/bin/bash
+cd /Applications/apache-tomcat-7.0.59/conf/Catalina/localhost/
+find . -name "*.xml"|sed 's/.xml//'|xargs -n1 -I {} mv {}.xml {}.xmls
+mv {query}.xmls {query}.xml
+echo {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7885990D-F686-43C3-8AF7-7E325D27E25F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -71,29 +94,6 @@
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>1355F940-DB64-4D4D-98B7-001008413671</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>#!/bin/bash
-cd /Applications/apache-tomcat-7.0.59/conf/Catalina/localhost/
-find . -name "*.xml"|sed 's/.xml//'|xargs -n1 -I {} mv {}.xml {}.xmls
-mv {query}.xmls {query}.xml
-echo {query}</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>7885990D-F686-43C3-8AF7-7E325D27E25F</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
