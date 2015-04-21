@@ -8,17 +8,6 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>58B5EC03-EE22-4D1D-8E0B-53F1AA6CC417</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>F7106078-0B7B-4D10-B3A7-7CC5859ED2CF</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
 		<key>7885990D-F686-43C3-8AF7-7E325D27E25F</key>
 		<array>
 			<dict>
@@ -40,18 +29,74 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>0A6090AD-8B84-4921-9566-B7296A68BCE5</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Edit in Sublime Text</string>
+			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Suclogger</string>
 	<key>description</key>
-	<string>Toggle Tomcat</string>
+	<string>Toggle Tomcat Conf Xmls</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
 	<string>Toggle Tomcat</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<true/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}has been chosen</string>
+				<key>title</key>
+				<string>Toggle Tomcat</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>1355F940-DB64-4D4D-98B7-001008413671</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>#!/bin/bash
+cd /Applications/apache-tomcat-7.0.59/conf/Catalina/localhost/
+find . -name "*.xml"|sed 's/.xml//'|xargs -n1 -I {} mv {}.xml {}.xmls
+mv {query}.xmls {query}.xml
+echo {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7885990D-F686-43C3-8AF7-7E325D27E25F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -106,33 +151,6 @@ echo "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;items&gt;$out&lt;/item
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>hotkey</key>
-				<integer>17</integer>
-				<key>hotmod</key>
-				<integer>1703936</integer>
-				<key>hotstring</key>
-				<string>T</string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>58B5EC03-EE22-4D1D-8E0B-53F1AA6CC417</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -142,39 +160,14 @@ echo "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;items&gt;$out&lt;/item
 cd /Applications/apache-tomcat-7.0.59/conf/Catalina/localhost/
 find . -name "*.xml"|sed 's/.xml//'|xargs -n1 -I {} mv {}.xml {}.xmls
 mv {query}.xmls {query}.xml
-echo {query}</string>
+/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl {query}.xml</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>7885990D-F686-43C3-8AF7-7E325D27E25F</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<true/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}has been chosen</string>
-				<key>title</key>
-				<string>Toggle Tomcat</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>1355F940-DB64-4D4D-98B7-001008413671</string>
+			<string>0A6090AD-8B84-4921-9566-B7296A68BCE5</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -183,12 +176,12 @@ echo {query}</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>1355F940-DB64-4D4D-98B7-001008413671</key>
+		<key>0A6090AD-8B84-4921-9566-B7296A68BCE5</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>190</real>
 		</dict>
-		<key>58B5EC03-EE22-4D1D-8E0B-53F1AA6CC417</key>
+		<key>1355F940-DB64-4D4D-98B7-001008413671</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
@@ -201,10 +194,10 @@ echo {query}</string>
 		<key>F7106078-0B7B-4D10-B3A7-7CC5859ED2CF</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>90</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>hi.suclogger.me</string>
+	<string>https://github.com/suclogger/alfred-tomcat</string>
 </dict>
 </plist>
