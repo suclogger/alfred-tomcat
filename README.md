@@ -1,5 +1,6 @@
 # alfred-tomcat
 用于 `Alfred 2` 的一个 workflow, 用于切换 `%tomcat%/conf/Catalina/localhost/` 下的多个 xml 文件,效果如图:
+
 ![](./quickview.png "quickview")
 
 - 根据输入自动匹配应用名
